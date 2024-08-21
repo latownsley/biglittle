@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl3pq8asbjnum"]
+
+[ext_resource type="FontFile" uid="uid://cyfnfgk5cwhf1" path="res://Sprout Lands - UI Pack - Basic pack/fonts/pixelFont-7-8x14-sproutLands.ttf" id="1_a15w1"]
+[ext_resource type="PackedScene" uid="uid://bhb7now5ukthb" path="res://ENDGameMenu.tscn" id="2_wu0lm"]
+
+[node name="EndGameScreen" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1308.0
+offset_bottom = 736.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 202.0
+offset_top = 96.0
+offset_right = 277.0
+offset_bottom = 119.0
+theme_override_fonts/font = ExtResource("1_a15w1")
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenu" parent="CanvasLayer" instance=ExtResource("2_wu0lm")]
+offset_left = 189.0
+offset_top = 143.0
+offset_right = 189.0
+offset_bottom = 143.0

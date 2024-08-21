@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://ces0eejf5he5e"]
+
+[ext_resource type="PackedScene" uid="uid://b42e1hp5i2khm" path="res://shroom.tscn" id="1_r32m5"]
+[ext_resource type="Script" path="res://player.gd" id="1_uny3q"]
+[ext_resource type="PackedScene" uid="uid://b8dev3oqjl88" path="res://dash.tscn" id="3_rxuyy"]
+[ext_resource type="AudioStream" uid="uid://uqpkofv1et8t" path="res://audio/458867__raclure__damage-sound-effect.mp3" id="4_1lbym"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bfg0b"]
+height = 34.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k57ua"]
+radius = 13.0384
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q0egw"]
+bg_color = Color(0.0186165, 0.0833746, 0.00711966, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06mct"]
+bg_color = Color(0.615686, 0.843137, 0.478431, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="Player" type="CharacterBody2D"]
+texture_filter = 1
+collision_layer = 257
+platform_floor_layers = 4294901760
+script = ExtResource("1_uny3q")
+
+[node name="Shroom" parent="." instance=ExtResource("1_r32m5")]
+unique_name_in_owner = true
+position = Vector2(-1, -13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -8)
+shape = SubResource("CapsuleShape2D_bfg0b")
+
+[node name="Dash" parent="." instance=ExtResource("3_rxuyy")]
+unique_name_in_owner = true
+
+[node name="HurtBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_k57ua")
+debug_color = Color(1, 0.0142473, 0.00220959, 0.42)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -42.0
+offset_top = -38.0
+offset_right = 46.0
+offset_bottom = -33.0
+rotation = -0.00592026
+theme_override_styles/background = SubResource("StyleBoxFlat_q0egw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_06mct")
+value = 100.0
+show_percentage = false
+
+[node name="DamageSound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_1lbym")

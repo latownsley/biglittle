@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://bft6406tl7763"]
+
+[ext_resource type="Script" path="res://orange_enemy.gd" id="1_8o2y2"]
+[ext_resource type="PackedScene" uid="uid://dqeismqxik8fl" path="res://bomb.tscn" id="1_fr2s6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v4swp"]
+radius = 13.0384
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nhv3b"]
+radius = 79.0569
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6w1uj"]
+bg_color = Color(0.162066, 0.162066, 0.162065, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hg7mg"]
+bg_color = Color(0.928577, 0.207989, 0.243344, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="OrangeEnemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+platform_floor_layers = 4294901760
+script = ExtResource("1_8o2y2")
+
+[node name="Bomb" parent="." instance=ExtResource("1_fr2s6")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_v4swp")
+
+[node name="AttackBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox"]
+shape = SubResource("CircleShape2D_nhv3b")
+debug_color = Color(0.830301, 0.00143815, 0.944629, 0.42)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -25.0
+offset_top = -19.0
+offset_right = 28.0
+offset_bottom = -15.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6w1uj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hg7mg")
+max_value = 3.0
+value = 3.0
+show_percentage = false

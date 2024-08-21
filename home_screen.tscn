@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbf42acssru72"]
+
+[ext_resource type="Script" path="res://home_screen.gd" id="1_6lw4p"]
+[ext_resource type="PackedScene" uid="uid://b218aa2rwkm78" path="res://main_menu.tscn" id="1_srfs2"]
+[ext_resource type="FontFile" uid="uid://cyfnfgk5cwhf1" path="res://Sprout Lands - UI Pack - Basic pack/fonts/pixelFont-7-8x14-sproutLands.ttf" id="3_7xtoi"]
+[ext_resource type="PackedScene" uid="uid://b42e1hp5i2khm" path="res://shroom.tscn" id="4_2u7na"]
+
+[node name="HomeScreen" type="Node2D"]
+script = ExtResource("1_6lw4p")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+offset_left = 177.0
+offset_top = 143.0
+offset_right = 217.0
+offset_bottom = 183.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="MainMenu" parent="CanvasLayer/MarginContainer/VBoxContainer" instance=ExtResource("1_srfs2")]
+layout_mode = 2
+
+[node name="Big_Little" type="Panel" parent="."]
+offset_left = 133.0
+offset_top = 86.0
+offset_right = 133.0
+offset_bottom = 86.0
+
+[node name="Label" type="Label" parent="Big_Little"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 20.0
+offset_right = 173.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("3_7xtoi")
+text = "     Big/Little"
+
+[node name="Shroom" parent="." instance=ExtResource("4_2u7na")]
+unique_name_in_owner = true
+position = Vector2(342, 181)

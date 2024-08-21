@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://cessrx4nsio37"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_niodp"]
+[ext_resource type="PackedScene" uid="uid://ces0eejf5he5e" path="res://player.tscn" id="1_w1fhy"]
+[ext_resource type="PackedScene" uid="uid://bft6406tl7763" path="res://orange_enemy.tscn" id="2_hhyqp"]
+[ext_resource type="PackedScene" uid="uid://csv8m50kp3gk4" path="res://addons/sprout_lands_tilemap/base/scenes/SproutLandsTileMap.tscn" id="3_13jvo"]
+[ext_resource type="PackedScene" uid="uid://b3k8tn104ldsv" path="res://pause_menu.tscn" id="4_h642r"]
+[ext_resource type="FontFile" uid="uid://cyfnfgk5cwhf1" path="res://Sprout Lands - UI Pack - Basic pack/fonts/pixelFont-7-8x14-sproutLands.ttf" id="6_xl1gf"]
+
+[node name="Game" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_niodp")
+
+[node name="World" type="Node2D" parent="."]
+unique_name_in_owner = true
+process_mode = 1
+
+[node name="Player" parent="World" instance=ExtResource("1_w1fhy")]
+
+[node name="OrangeEnemy" parent="World" instance=ExtResource("2_hhyqp")]
+
+[node name="SproutLandsTileMap" parent="World" instance=ExtResource("3_13jvo")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("4_h642r")]
+unique_name_in_owner = true
+visible = false
+offset_left = -98.0
+offset_top = 1.0
+offset_right = -98.0
+offset_bottom = 1.0
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+offset_right = 1382.0
+offset_bottom = 810.0
+color = Color(0.0295066, 0.0295066, 0.0295066, 1)
+
+[node name="Label" type="Label" parent="GameOver"]
+offset_left = 699.0
+offset_top = 356.0
+offset_right = 774.0
+offset_bottom = 379.0
+theme_override_fonts/font = ExtResource("6_xl1gf")
+text = "Game Over"
+
+[connection signal="health_depleted" from="World/Player" to="." method="_on_player_health_depleted"]
